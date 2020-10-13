@@ -1,6 +1,6 @@
 - ![Нелинейные методы восстановления регрессии](https://github.com/vinovatvolondemord/ML1/blob/master/Readme.md#%D0%BD%D0%B5%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BD%D1%8B%D0%B5-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B-%D0%B2%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%81%D0%B8%D0%B8)
 - ![Логические алгоритмы классификации](https://github.com/vinovatvolondemord/ML1/blob/master/Readme.md#%D0%BB%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5-%D0%B0%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC%D1%8B-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8)
-  - ![Понятие информативности]()
+  - ![Понятие информативности](https://github.com/vinovatvolondemord/ML1/blob/master/Readme.md#%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D0%B8%D0%B5-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D1%81%D1%82%D0%B8)
   - ![Методы поиска информативных закономерностей]()
   - ![Решающие списки]()
   - ![Решающие деревья]()
@@ -59,3 +59,28 @@
   **Опр. 1.1.** Предикат ![](https://latex.codecogs.com/gif.latex?%5Cvarphi%28x%29) будем называть логической ε,δ-закономерностью для класса ![](https://latex.codecogs.com/gif.latex?c%5Cin%20Y) , если ![](https://latex.codecogs.com/gif.latex?E&plus;c%28%5Cvarphi%20%2C%20X%5El%29%5Cleq%20%5Cvarepsilon%20%5C%20u%20%5C%20D_c%28%5Cvarphi%2C%20X%5El%29%5Cgeq%20%5Cdelta) при заданных достаточно малом ε и достаточно большом δ из отрезка [0,1].
   
   Eсли ![](https://latex.codecogs.com/gif.latex?n_c%28%5Cvarphi%20%29%3D0) , то закономерность ![](https://latex.codecogs.com/gif.latex?%5Cvarphi) называется чистой или непротиворечивой. Если ![](https://latex.codecogs.com/gif.latex?n_c%28%5Cvarphi%20%29%20%3E0) , то закономерность ![](https://latex.codecogs.com/gif.latex?%5Cvarphi) называется частичной.
+  
+  **Опр. 1.2.** Информативность предиката ![](https://latex.codecogs.com/gif.latex?%5Cvarphi%20%28x%29) относительно класса c ∈ Y по выборке ![](https://latex.codecogs.com/gif.latex?X%5El) есть
+  
+  ![](https://latex.codecogs.com/gif.latex?I_c%28%5Cvarphi%20%2CX%5El%29%3D%20-%5Cln%20h_%7BP_c%2CN_c%7D%28p_c%28%5Cvarphi%20%29%2Cn_c%28%5Cvarphi%20%29%29.)
+  
+  Предикат ![](https://latex.codecogs.com/gif.latex?%5Cvarphi%20%28x%29) будем называть статистической закономерностью для класса c, если ![](https://latex.codecogs.com/gif.latex?I_c%28%5Cvarphi%20%2CX%5El%29%5Cgeq%20I_0) при заданном достаточно большом ![](https://latex.codecogs.com/gif.latex?I_0).
+  
+  **Эффективное вычисление информативности.** Заметим, что вычисление логарифма ![](https://latex.codecogs.com/gif.latex?h_%7BP%2CN%7D%28p%2Cn%29) сводится к сложению 9 чисел вида ln(k!). Когда длина выборкиℓфиксирована, можно заранее составить таблицу логарифмов факториалов ![](https://latex.codecogs.com/gif.latex?L_k%3D%5Cln%20k%21) по рекуррентной формуле ![](https://latex.codecogs.com/gif.latex?L_1%3D0%3B%20%5C%20L_k%3DL_%7Bk-1%7D&plus;%5Cln%20k) для всех k= 2,...,ℓ.
+  
+  Другой способ вычисления ln(k!) связан с применением формулы Стирлингa:
+  
+  ![](https://latex.codecogs.com/gif.latex?%5Cln%20k%21%20%5Capprox%20k%5Cln%20k-k&plus;%5Cfrac%7B1%7D%7B2%7D%5Cln%202k%5Cpi%20&plus;%5Cfrac%7B1%7D%7B12k%7D-%5Cfrac%7B1%7D%7B360k%5E2%7D)
+  
+  Эта формула даёт достаточно точное приближение. Более точное приближение даёт формула Рамануджана:
+  
+  ![](https://latex.codecogs.com/gif.latex?%5Clog%20k%21%5Capprox%20k%20%5Clog%20k-k%20&plus;%5Cfrac%7B1%7D%7B6%7D%5Cln%20%28k%281&plus;4k%281&plus;2k%29%29%29&plus;%5Cfrac%7B1%7D%7B2%7D%5Cln%20%5Cpi)
+  
+  Обе формулы можно применять даже когдаP,N,p,nне являются целыми числами. Это позволяет обобщить понятие информативности на тот случай, когда объекты не равнозначны.
+  **Сопоставление двух критериев информативности.** Какой из критериев предпочтительнее - эвристический или статистический?
+  
+  !()[https://drive.google.com/file/d/1F6eLkExFFvEqA9GKO_DluYZQ-7PXukWX/view?usp=sharing]
+  
+  При разумных сочетаниях параметров ε и Iо эвристический критерий практически всегда оказывается строже статистического. Имеется довольно обширная область статистических закономерностей, для которых вероятность слу-чайной реализации крайне низка, в то же время, они допускаютслишком многоошибок и не являются логическими закономерностями в смыслеε,δ-критерия.
+  
+  На самом деле полезны оба определения. В дальнейшем мы увидим, что в зависимости от ситуации оказывается более целесообразным применять то эвристический, то статистический критерий информативности.
